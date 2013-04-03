@@ -17,3 +17,4 @@
 *.sdf
 *.opensdf
 vs2012/Debug/*
+vs2012/Release/*
