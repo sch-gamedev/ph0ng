@@ -11,3 +11,9 @@
 *.lai
 *.la
 *.a
+
+# Visual Studio files
+*.suo
+*.sdf
+*.opensdf
+vs2012/Debug/*
