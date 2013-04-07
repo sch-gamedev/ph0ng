@@ -31,6 +31,6 @@ int main(char** argc, int argv)
 		window.clear(sf::Color(127, 0, 0, 255));
 		window.display();
 	}
-
+	/*Gazben commit proba 001*/
 	return 0;
 }
