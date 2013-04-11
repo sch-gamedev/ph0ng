@@ -6,17 +6,23 @@
 // *
 // ******************************************************************************
 
+
+
 #include <SFML/Graphics.hpp>
+#include "game.h"
+
 
 int main(char** argc, int argv)
 {
+
 #ifdef _DEBUG
 	sf::String windowTitle = "ph0ng --- DEBUG";
+
 #else
 	sf::String windowTitle = "ph0ng";
 #endif
 
-	sf::RenderWindow window(sf::VideoMode(800, 600), windowTitle);
+	sf::RenderWindow window(sf::VideoMode(1280, 700), windowTitle);
 
 	while (window.isOpen())
 	{
@@ -31,6 +37,6 @@ int main(char** argc, int argv)
 		window.clear(sf::Color(127, 0, 0, 255));
 		window.display();
 	}
-	/*Gazben commit proba 001*/
+
 	return 0;
 }
