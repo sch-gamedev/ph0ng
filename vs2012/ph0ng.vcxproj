@@ -82,15 +82,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\src\ball.cpp" />
+    <ClCompile Include="..\src\game.cpp" />
     <ClCompile Include="..\src\main.cpp" />
-    <ClCompile Include="game.cpp" />
-    <ClCompile Include="player.cpp" />
-    <ClCompile Include="ball.cpp" />
+    <ClCompile Include="..\src\player.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="game.h" />
-    <ClInclude Include="ball.h" />
-    <ClInclude Include="player.h" />
+    <ClInclude Include="..\src\ball.h" />
+    <ClInclude Include="..\src\game.h" />
+    <ClInclude Include="..\src\player.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
