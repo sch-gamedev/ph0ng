@@ -8,35 +8,14 @@
 
 
 
-#include <SFML/Graphics.hpp>
 #include "game.h"
 
 
 int main(char** argc, int argv)
 {
 
-#ifdef _DEBUG
-	sf::String windowTitle = "ph0ng --- DEBUG";
-
-#else
-	sf::String windowTitle = "ph0ng";
-#endif
-
-	sf::RenderWindow window(sf::VideoMode(1280, 700), windowTitle);
-
-	while (window.isOpen())
-	{
-		sf::Event event;
-
-		while (window.pollEvent(event)) {
-			if (event.type == sf::Event::Closed) {
-				window.close();
-			}
-		}
-
-		window.clear(sf::Color(127, 0, 0, 255));
-		window.display();
-	}
+	Game newgame;
+	newgame.Run();	
 
 	return 0;
 }

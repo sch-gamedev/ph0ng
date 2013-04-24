@@ -1,6 +1,60 @@
+#include <SFML/Graphics.hpp>
 #include "game.h"
 
-void Game::Draw(sf::RenderWindow &Window)
+void Game::Run()
 {
+	// main loop
+	sf::Clock clock;
+	sf::Int64 sum_time = 0;
+	while( running )
+	{
+		// elõzõ frame óta eltelt idõ lekérdezése
+		sum_time += clock.restart().asMicroseconds();
 
+		// fix 50 Hz-cel fusson a program
+		while( sum_time >= 20000 )
+		{
+			sum_time -= 20000;
+
+			// események kezelése
+			sf::Event event;
+			while( window.pollEvent(event) )
+			{
+				switch( event.type )
+				{
+					// ablak bezárása
+				case sf::Event::Closed :
+					{
+						running = false;
+						break;
+					}
+
+					// ablak átméretezõdött
+				case sf::Event::Resized :
+					{
+						SetProjection(event.size.width, event.size.height);
+						break;
+					}
+				}
+			}
+
+			// az aktuális játékállapot léptetése
+			gamestates[currentState]->Update();
+			// az aktuális játékállapot megjelenítése
+			gamestates[currentState]->Draw();
+			window.display();
+		}
+	}
 }
+
+/*void Game::SetProjection(GLsizei Width_in, GLsizei Height_in)
+{
+	// vetítés beállítása
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
+	glOrtho(0, 1024, 0, 768, 1, -1);
+	glMatrixMode(GL_MODELVIEW);
+
+	// viewport beállítása a teljes ablakra
+	glViewport(0, 0, Width_in, Height_in);
+}*/

@@ -12,7 +12,8 @@ using std::string;
 class Player{
 
 private:
-
+	static int nextID;
+	const int id;
 	//enum fajta { sima , hajlott };   // ha szeretnén tobb felet csinalni
  	int x;
 	int y;
@@ -25,7 +26,7 @@ public:
 	
 	/*a kepernyo kozepe a kozeppont es 100 pixelnyire van a kozepponttol*/
 	Player(const string &imageName)   //konstruktor
-		:x(1280/2 + 100), y(700/2 + 0), alfa(0)
+		:x(1280/2 + 100), y(700/2 + 0), alfa(0), id(nextID++)
 	{
 		tex.loadFromFile(imageName);
 		sprite.setTexture(tex);
@@ -37,4 +38,7 @@ public:
 
 	void Draw(RenderWindow &Window);  //kirajzolas MEGBESZELNI!!!!!
 };
+
+int Player::nextID = 0;
+
 #endif

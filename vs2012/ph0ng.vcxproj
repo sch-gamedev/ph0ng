@@ -84,12 +84,15 @@
   <ItemGroup>
     <ClCompile Include="..\src\ball.cpp" />
     <ClCompile Include="..\src\game.cpp" />
+    <ClCompile Include="..\src\inGameState.cpp" />
     <ClCompile Include="..\src\main.cpp" />
     <ClCompile Include="..\src\player.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\ball.h" />
     <ClInclude Include="..\src\game.h" />
+    <ClInclude Include="..\src\gameState.h" />
+    <ClInclude Include="..\src\inGameState.h" />
     <ClInclude Include="..\src\player.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
