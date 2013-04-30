@@ -39,6 +39,4 @@ public:
 	void Draw(RenderWindow &Window);  //kirajzolas MEGBESZELNI!!!!!
 };
 
-int Player::nextID = 0;
-
 #endif

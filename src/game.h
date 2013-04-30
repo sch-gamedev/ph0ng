@@ -35,7 +35,7 @@ public:
 		sf::String windowTitle = "ph0ng";
 #endif
 
-		window = sf::RenderWindow(sf::VideoMode(xres, yres), windowTitle);
+		//window = sf::RenderWindow(sf::VideoMode(xres, yres), windowTitle);
 
 		gamestates.push_back(new InGameState(this));
 

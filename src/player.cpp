@@ -1,5 +1,6 @@
 #include "player.h"
 
+int Player::nextID = 0;
 
 void Player::lmove(){		// balra mozgatas
 

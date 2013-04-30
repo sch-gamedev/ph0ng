@@ -1,8 +1,16 @@
 #include <SFML/Graphics.hpp>
+
 #include "game.h"
+#include "ball.h"
+
+int Game::xres = 0;
+int Game::yres = 0;
 
 void Game::Run()
 {
+	Ball b(mm::vec2(10,50), "tex.png");
+	float amount = 5;
+
 	// main loop
 	sf::Clock clock;
 	sf::Int64 sum_time = 0;
@@ -10,7 +18,7 @@ void Game::Run()
 	{
 		// elõzõ frame óta eltelt idõ lekérdezése
 		sum_time += clock.restart().asMicroseconds();
-
+		
 		// fix 50 Hz-cel fusson a program
 		while( sum_time >= 20000 )
 		{
@@ -32,8 +40,20 @@ void Game::Run()
 					// ablak átméretezõdött
 				case sf::Event::Resized :
 					{
-						SetProjection(event.size.width, event.size.height);
+						//SetProjection(event.size.width, event.size.height);
 						break;
+					}
+
+				case sf::Event::KeyPressed:
+					{
+						if( event.key.code == sf::Keyboard::A )
+							b.update_pos(mm::vec2(-amount,0));
+						if( event.key.code == sf::Keyboard::D )
+							b.update_pos(mm::vec2(amount,0));
+						if( event.key.code == sf::Keyboard::S)
+							b.update_pos(mm::vec2(0, amount));
+						if( event.key.code == sf::Keyboard::W )
+							b.update_pos(mm::vec2(0, -amount));
 					}
 				}
 			}
