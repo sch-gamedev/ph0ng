@@ -1,5 +1,5 @@
 #include <SFML/Graphics.hpp>
-
+#include <vector>
 #include "game.h"
 #include "ball.h"
 
@@ -26,7 +26,7 @@ void Game::Run()
 
 			// események kezelése
 			sf::Event event;
-			while( window.pollEvent(event) )
+			while( window->pollEvent(event) )
 			{
 				switch( event.type )
 				{
@@ -40,29 +40,22 @@ void Game::Run()
 					// ablak átméretezõdött
 				case sf::Event::Resized :
 					{
-						//SetProjection(event.size.width, event.size.height);
+						//Game::SetProjection(event.size.width, event.size.height);
 						break;
 					}
 
 				case sf::Event::KeyPressed:
 					{
-						if( event.key.code == sf::Keyboard::A )
-							b.update_pos(mm::vec2(-amount,0));
-						if( event.key.code == sf::Keyboard::D )
-							b.update_pos(mm::vec2(amount,0));
-						if( event.key.code == sf::Keyboard::S)
-							b.update_pos(mm::vec2(0, amount));
-						if( event.key.code == sf::Keyboard::W )
-							b.update_pos(mm::vec2(0, -amount));
+						
 					}
 				}
 			}
-
+			window->clear();
 			// az aktuális játékállapot léptetése
 			gamestates[currentState]->Update();
 			// az aktuális játékállapot megjelenítése
-			gamestates[currentState]->Draw();
-			window.display();
+			gamestates[currentState]->Draw(window);
+			window->display();
 		}
 	}
 }

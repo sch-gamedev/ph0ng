@@ -2,22 +2,24 @@
 #define game_h
 
 #include <SFML/Graphics/RenderWindow.hpp>
+#include <vector>
 #include "gameState.h"
 #include "inGameState.h"
 
 enum GState
 {
-	MENU,
+	//MENU,
 	INGAME
 };
 
 class Game
 {
 public:
+
 	static int xres;
 	static int yres;
 
-	sf::RenderWindow window;
+	sf::RenderWindow *window;
 	std::vector<GameState*> gamestates;
 	std::vector<Player*> players;
 	bool running;
@@ -35,7 +37,7 @@ public:
 		sf::String windowTitle = "ph0ng";
 #endif
 
-		//window = sf::RenderWindow(sf::VideoMode(xres, yres), windowTitle);
+		window = new sf::RenderWindow(sf::VideoMode(xres, yres), windowTitle);
 
 		gamestates.push_back(new InGameState(this));
 
@@ -49,6 +51,8 @@ public:
 			delete players[i];
 		for (int i=0; i<gamestates.size(); i++)
 			delete gamestates[i];
+
+		delete window;
 	}
 
 	// gamestate.Addplayer(new Player(...))

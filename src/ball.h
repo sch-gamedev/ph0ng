@@ -29,16 +29,31 @@ public:
 	void update_pos(const mm::vec2& p)
 	{
 		pos += p;
+		spr.setPosition(pos.x, pos.y);
 	}
 
 	void update() //csinálja a labda dolgait
 	{
-		spr.setPosition(pos.x, pos.y);
+		//spr.setPosition(pos.x, pos.y);
+
+		if( sf::Keyboard::isKeyPressed(sf::Keyboard::A) )
+			update_pos(mm::vec2(-5,0));
+		if( sf::Keyboard::isKeyPressed(sf::Keyboard::D ))
+			update_pos(mm::vec2(5,0));
+		if( sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+			update_pos(mm::vec2(0, 5));
+		if( sf::Keyboard::isKeyPressed(sf::Keyboard::W ))
+			update_pos(mm::vec2(0, -5));
 	}
 
 	void draw()
 	{
-		//window.draw(spr); //ezt kell csinalni!!! h rajzolodjon...
+		//window->draw(spr); //ezt kell csinalni!!! h rajzolodjon...
+	}
+
+	const sf::Sprite& GetSprite() const
+	{
+		return spr;
 	}
 
 };
