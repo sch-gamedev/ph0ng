@@ -5,6 +5,8 @@
 #include <SFML/Graphics/Texture.hpp>
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <string.h>
+#include <mymath/mymath.h>
+
 
 using namespace sf;
 using std::string;
@@ -14,9 +16,9 @@ class Player{
 private:
 	static int nextID;
 	const int id;
-	//enum fajta { sima , hajlott };   // ha szeretnén tobb felet csinalni
- 	int x;
-	int y;
+	//enum fajta { sima , hajlott };   // ha szeretnen tobb felet csinalni
+
+	mm::vec2 pos;
 	int alfa;  // mennyire van elfordulva FOKban
 
 	Texture tex;
@@ -25,18 +27,16 @@ private:
 public:
 	
 	/*a kepernyo kozepe a kozeppont es 100 pixelnyire van a kozepponttol*/
-	Player(const string &imageName)   //konstruktor
-		:x(1280/2 + 100), y(700/2 + 0), alfa(0), id(nextID++)
+	Player(const string &imageName);
+
+	const sf::Sprite& GetSprite() const
 	{
-		tex.loadFromFile(imageName);
-		sprite.setTexture(tex);
+		return sprite;
 	}
-  
-	void lmove(); // balra mozgatas
 
-	void rmove(); //jobbra mozgatas
+	void update();
 
-	void Draw(RenderWindow &Window);  //kirajzolas MEGBESZELNI!!!!!
+	void Draw(RenderWindow &Window);  
 };
 
 #endif

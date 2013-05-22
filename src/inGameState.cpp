@@ -6,16 +6,16 @@ using std::vector;
 
 void InGameState::Update( )
 {
-	b.update();
+	player.update();
 }
 
 void InGameState::Draw(sf::RenderTarget* rt)
 {
-	rt->draw(b.GetSprite());
+	rt->draw(player.GetSprite());
 }
 
-InGameState::InGameState(Game *game):
-	b(mm::vec2(10,50), "tex.png")
+InGameState::InGameState(Game *game)
+	:player(/*mm::vec2(10,50), */"playertexture.png")
 {
 	this->game = game;
 }

@@ -16,45 +16,19 @@ private:
 
 	int speed;  
 
-	void colldet(){} // collision detection UPDATE hivja
+	void colldet(); // collision detection UPDATE hivja
 
 public:
 
-	Ball(const mm::vec2& p, const std::string& tex_filename):pos(p)  //konstruktor
-	{
-		tex.loadFromFile(tex_filename);
-		spr.setTexture(tex);
-	}
+	Ball(const mm::vec2& p, const std::string& tex_filename);
 
-	void update_pos(const mm::vec2& p)
-	{
-		pos += p;
-		spr.setPosition(pos.x, pos.y);
-	}
+	void update_pos(const mm::vec2& p);
 
-	void update() //csinálja a labda dolgait
-	{
-		//spr.setPosition(pos.x, pos.y);
+	void update(); //csinálja a labda dolgait
 
-		if( sf::Keyboard::isKeyPressed(sf::Keyboard::A) )
-			update_pos(mm::vec2(-5,0));
-		if( sf::Keyboard::isKeyPressed(sf::Keyboard::D ))
-			update_pos(mm::vec2(5,0));
-		if( sf::Keyboard::isKeyPressed(sf::Keyboard::S))
-			update_pos(mm::vec2(0, 5));
-		if( sf::Keyboard::isKeyPressed(sf::Keyboard::W ))
-			update_pos(mm::vec2(0, -5));
-	}
+	void draw();
 
-	void draw()
-	{
-		//window->draw(spr); //ezt kell csinalni!!! h rajzolodjon...
-	}
-
-	const sf::Sprite& GetSprite() const
-	{
-		return spr;
-	}
+	const sf::Sprite& GetSprite() const;
 
 };
 #endif

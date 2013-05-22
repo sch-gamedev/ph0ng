@@ -12,13 +12,14 @@ class InGameState : public GameState
 private:
 	Game *game;
 
-	Ball b;
+	Player player;
+	
 
 public:
 	InGameState(Game *game);
 	~InGameState();
 
-	void Update( );
+	void Update();
 
 	void Draw(sf::RenderTarget*);
 };

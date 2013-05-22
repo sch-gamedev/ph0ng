@@ -6,20 +6,26 @@
 int Game::xres = 0;
 int Game::yres = 0;
 
+sf::Color white (255, 255, 255, 255);  //white background
+
 void Game::Run()
 {
-	Ball b(mm::vec2(10,50), "tex.png");
-	float amount = 5;
 
-	// main loop
+	//Clock stuff
 	sf::Clock clock;
 	sf::Int64 sum_time = 0;
+
+	/////////
+	///MAIN LOOP
+	////////
 	while( running )
 	{
-		// elõzõ frame óta eltelt idõ lekérdezése
+
+
+		// get passed time
 		sum_time += clock.restart().asMicroseconds();
 		
-		// fix 50 Hz-cel fusson a program
+		// FIX 50Hz
 		while( sum_time >= 20000 )
 		{
 			sum_time -= 20000;
@@ -50,15 +56,60 @@ void Game::Run()
 					}
 				}
 			}
-			window->clear();
+
+
+			window->clear(white);						
 			// az aktuális játékállapot léptetése
 			gamestates[currentState]->Update();
 			// az aktuális játékállapot megjelenítése
-			gamestates[currentState]->Draw(window);
+			gamestates[currentState]->Draw(window);		
 			window->display();
-		}
-	}
+
+		}  //end of while (sum time)
+
+	}		//end of while(running)
+
+}	//end of func.
+
+//Játékos hozzáadása
+void Game::AddPlayer( Player *newplayer )
+{
+	players.push_back(newplayer);
 }
+
+
+Game::~Game()
+{
+	for (int i=0; i<players.size(); i++)
+		delete players[i];
+	for (int i=0; i<gamestates.size(); i++)
+		delete gamestates[i];
+
+	delete window;
+}
+
+//INIT
+Game::Game( const int &Xres /*= 1280*/, const int &Yres /*= 720*/ )
+{
+	xres = Xres;
+	yres = Yres;
+
+#ifdef _DEBUG
+	sf::String windowTitle = "ph0ng --- DEBUG";
+
+#else
+	sf::String windowTitle = "ph0ng";
+#endif
+
+	window = new sf::RenderWindow(sf::VideoMode(xres, yres), windowTitle);
+
+	gamestates.push_back(new InGameState(this));
+
+	currentState = INGAME;
+	running = true;
+}
+
+
 
 /*void Game::SetProjection(GLsizei Width_in, GLsizei Height_in)
 {

@@ -25,38 +25,15 @@ public:
 	bool running;
 	GState currentState;
 
-	Game(const int &Xres = 1280, const int &Yres = 720)		
-	{
-		xres = Xres;
-		yres = Yres;
+	Game(const int &Xres = 1280, const int &Yres = 720);
 
-#ifdef _DEBUG
-		sf::String windowTitle = "ph0ng --- DEBUG";
-
-#else
-		sf::String windowTitle = "ph0ng";
-#endif
-
-		window = new sf::RenderWindow(sf::VideoMode(xres, yres), windowTitle);
-
-		gamestates.push_back(new InGameState(this));
-
-		currentState = INGAME;
-		running = true;
-	}
-
-	~Game()
-	{
-		for (int i=0; i<players.size(); i++)
-			delete players[i];
-		for (int i=0; i<gamestates.size(); i++)
-			delete gamestates[i];
-
-		delete window;
-	}
+	~Game();
 
 	// gamestate.Addplayer(new Player(...))
-	void AddPlayer(Player *newplayer) { players.push_back(newplayer); }
+	void AddPlayer(Player *newplayer);
+	
+	
+	// MAIN LOOP deklarálása
 	void Run();
 };
 
