@@ -4,48 +4,91 @@
 #include <mymath/mymath.h>
 #include <math.h>
 
+
 int Player::nextID = 0;
 
-void Player::Draw(sf::RenderWindow &Window)  //kirajzolas MEGBESZELNI!!!!!
+void Player::Draw(sf::RenderWindow &Window) 
 {
-	//pos += p;
-	sprite.setPosition(pos.x, pos.y);
 	Window.draw(sprite);
 }
 
 Player::Player( const string &imageName ) 
-	:/*pos.x(1280/2 + 100), pos.y(700/2 + 0), *//*alfa(0), */id(nextID++)
+	:id(nextID++), alfa(0), r(200)
 {
 
-	alfa = 0;
-
-	sprite.setRotation(90);
-	pos.x = 1280/2 + 15;   // 150 pixel lesz az r
-	pos.y = 700/2 + 0;
+	//Sprite data:
 	tex.loadFromFile(imageName);
 	sprite.setTexture(tex);
+	sprite.setRotation(90);
+	
+	//Positon:
+	move(1);			//GANYOLAAASSS!!!!
+	move(-1);
+	firsthalf = true;
+
+}
+
+void Player::move(float angle){
 
 
+	sprite.setOrigin(tex.getSize().x/2.0, 0);
+
+//FIXME! 
+
+	//firsthalf handleing
+	/*
+	if( alfa + angle > 180 && !sf::Keyboard::isKeyPressed(Keyboard::A) && firsthalf == true)
+		firsthalf = false;
+	
+	if( alfa + angle < 180 && !sf::Keyboard::isKeyPressed(Keyboard::D) && firsthalf == false)
+		firsthalf = true;
+	
+	if( alfa + angle> 360 && !sf::Keyboard::isKeyPressed(Keyboard::A) && firsthalf == false)
+		firsthalf = true;
+	
+	if( alfa + angle< 360 && !sf::Keyboard::isKeyPressed(Keyboard::D)  && firsthalf == true)
+		firsthalf = false;
+	*/
+
+	//Degree handle
+	if(alfa + angle > 360 )
+		alfa = 0;
+	if(alfa + angle < 0)
+		alfa = 360;
+
+	alfa += angle;
+	pos.x = r*cos(mm::radians(alfa));
+	pos.y = r*sin(mm::radians(alfa));
+	
+	sprite.setRotation(360-(90-alfa));
 }
 
 void Player::update (){
 
 	if( sf::Keyboard::isKeyPressed(sf::Keyboard::A) ){
-		
-		// ROTATION COMES HERE
-		pos.x += -5;
-		//sprite.setRotation(sprite.getRotation() + alfa);
+
+		if( firsthalf == true)
+		  move( -1 );
+		else
+		  move(  1 );
 	}
-	if( sf::Keyboard::isKeyPressed(sf::Keyboard::D ))
-		pos.x += 5;
+
+	if( sf::Keyboard::isKeyPressed(sf::Keyboard::D )){
+
+		if(firsthalf == true)
+			move( 1 );
+		else
+			move( -1 );
 	
-	if( sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+	}
+/*
+	if( sf::Keyboard::isKeyPressed(sf::Keyboard::S)){
 		pos.y += 5;
-
-	if( sf::Keyboard::isKeyPressed(sf::Keyboard::W ))
+	}
+	
+	if( sf::Keyboard::isKeyPressed(sf::Keyboard::W )){
 		pos.y += -5;
-
-
-	//sprite.setRotation(sprite.getRotation());
-	sprite.setPosition(pos.x, pos.y);		//update the sprite position
+	}
+*/
+	sprite.setPosition(pos.x + 1280/2.0, pos.y + 720/2.0);		//update the sprite position
 }

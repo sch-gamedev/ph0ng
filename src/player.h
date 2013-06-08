@@ -14,29 +14,39 @@ using std::string;
 class Player{
 
 private:
+
+	//ID:
 	static int nextID;
 	const int id;
-	//enum fajta { sima , hajlott };   // ha szeretnen tobb felet csinalni
 
+
+	//POSITION:
+	
 	mm::vec2 pos;
-	int alfa;  // mennyire van elfordulva FOKban
+	float alfa;  //rotation 
+	float r;  
+	bool firsthalf;		//true if the player is in the first 2 querters of the screen
 
+	//Sprite data:
 	Texture tex;
 	Sprite sprite;
 
+
 public:
 	
-	/*a kepernyo kozepe a kozeppont es 100 pixelnyire van a kozepponttol*/
-	Player(const string &imageName);
+	Player(const string &imageName);	//CTOR
 
 	const sf::Sprite& GetSprite() const
 	{
 		return sprite;
 	}
+	void move(float angle);
 
-	void update();
+	void update();						//input handling
 
-	void Draw(RenderWindow &Window);  
+	void Draw(RenderWindow &Window);	//render function 
+
+
 };
 
 #endif
