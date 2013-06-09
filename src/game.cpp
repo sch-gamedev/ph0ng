@@ -2,6 +2,7 @@
 #include <vector>
 #include "game.h"
 #include "ball.h"
+#include <stdio.h>
 
 int Game::xres = 0;
 int Game::yres = 0;
@@ -58,10 +59,11 @@ void Game::Run()
 			}
 
 
+			//clear the window 
 			window->clear(white);						
-			// az aktuális játékállapot léptetése
+			// Update the current gamestate
 			gamestates[currentState]->Update();
-			// az aktuális játékállapot megjelenítése
+			// Render current gamestate
 			gamestates[currentState]->Draw(window);		
 			window->display();
 
@@ -96,11 +98,10 @@ Game::Game( const int &Xres /*= 1280*/, const int &Yres /*= 720*/ )
 
 #ifdef _DEBUG
 	sf::String windowTitle = "ph0ng --- DEBUG";
-
+	freopen("CON", "w", stdout);
 #else
 	sf::String windowTitle = "ph0ng";
 #endif
-
 	window = new sf::RenderWindow(sf::VideoMode(xres, yres), windowTitle);
 
 	gamestates.push_back(new InGameState(this));

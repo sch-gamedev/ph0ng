@@ -41,7 +41,6 @@ public:
 	}
 	void move(float angle);
 
-	//void colldet(Ball&);
 
 	void update();						//input handling
 

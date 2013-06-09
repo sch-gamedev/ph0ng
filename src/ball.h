@@ -11,6 +11,7 @@ class Ball{
 private:
 
 	//
+	mm::vec2 movevector;
 	mm::vec2 pos;
 	int m;  //mass of the ball
 	
@@ -21,9 +22,10 @@ private:
 
 public:
 
-	Ball(const mm::vec2&, const std::string&, int);
+	Ball(mm::vec2, std::string);
 
-	void update(sf::FloatRect); 
+	void update(); 
+	void collusion(sf::FloatRect);
 
 	void Draw(sf::RenderWindow&);
 
