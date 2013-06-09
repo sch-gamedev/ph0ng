@@ -71,7 +71,7 @@ void Game::Run()
 
 }	//end of func.
 
-//Játékos hozzáadása
+//Add Player
 void Game::AddPlayer( Player *newplayer )
 {
 	players.push_back(newplayer);

@@ -13,7 +13,8 @@ private:
 	Game *game;
 
 	Player player;
-	
+
+	std::vector<Ball*> Balls; //container of the balls... :P
 
 public:
 	InGameState(Game *game);

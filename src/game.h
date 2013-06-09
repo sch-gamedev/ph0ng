@@ -22,18 +22,17 @@ public:
 	sf::RenderWindow *window;
 	std::vector<GameState*> gamestates;
 	std::vector<Player*> players;
+
 	bool running;
 	GState currentState;
 
 	Game(const int &Xres = 1280, const int &Yres = 720);
-
 	~Game();
 
 	// gamestate.Addplayer(new Player(...))
 	void AddPlayer(Player *newplayer);
 	
-	
-	// MAIN LOOP deklarálása
+	// MAIN LOOP 
 	void Run();
 };
 

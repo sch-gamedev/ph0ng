@@ -1,5 +1,3 @@
-
-
 #include "ball.h"
 #include <SFML/Graphics.hpp>
 #include <SFML/Graphics/Texture.hpp>
@@ -8,42 +6,27 @@
 
 const sf::Sprite& Ball::GetSprite() const
 {
-	return spr;
+	return sprite;
 }
 
-void Ball::draw()
+void Ball::Draw(sf::RenderWindow &Window) 
 {
-	//window->draw(spr); //ezt kell csinalni!!! h rajzolodjon...
+	Window.draw(sprite);
 }
 
-void Ball::update() /*csinálja a labda dolgait */
+//update the position
+void Ball::update(sf::FloatRect inhitbox)
 {
-	//spr.setPosition(pos.x, pos.y);
-
-	if( sf::Keyboard::isKeyPressed(sf::Keyboard::A) )
-		update_pos(mm::vec2(-5,0));
-	if( sf::Keyboard::isKeyPressed(sf::Keyboard::D ))
-		update_pos(mm::vec2(5,0));
-	if( sf::Keyboard::isKeyPressed(sf::Keyboard::S))
-		update_pos(mm::vec2(0, 5));
-	if( sf::Keyboard::isKeyPressed(sf::Keyboard::W ))
-		update_pos(mm::vec2(0, -5));
+	//WRITE MEE
+	
 }
 
-void Ball::update_pos( const mm::vec2& p )
-{
-	pos += p;
-	spr.setPosition(pos.x, pos.y);
-}
 
-Ball::Ball( const mm::vec2& p, const std::string& tex_filename ) :pos(p)  //konstruktor
+
+Ball::Ball( const mm::vec2& p, const std::string& tex_filename, int m = 5) :pos(p)
 {
 	tex.loadFromFile(tex_filename);
-	spr.setTexture(tex);
+	sprite.setTexture(tex);
 }
 
-void Ball::colldet()
-{
-
-}
 

@@ -31,7 +31,6 @@ private:
 	Texture tex;
 	Sprite sprite;
 
-
 public:
 	
 	Player(const string &imageName);	//CTOR
@@ -41,6 +40,8 @@ public:
 		return sprite;
 	}
 	void move(float angle);
+
+	//void colldet(Ball&);
 
 	void update();						//input handling
 
