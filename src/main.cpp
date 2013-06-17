@@ -14,7 +14,6 @@
 int main(char** argc, int argv)
 {
 
-
 	Game newgame;
 	newgame.Run();	
 

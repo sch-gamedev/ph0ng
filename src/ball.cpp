@@ -2,9 +2,10 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Graphics/Texture.hpp>
 #include <mymath/mymath.h>
+#include <stdio.h>
+#include "Collision.h"
 
-
-const sf::Sprite& Ball::GetSprite() const
+sf::Sprite& Ball::GetSprite()
 {
 	return sprite;
 }
@@ -24,30 +25,22 @@ void Ball::update()
 sprite.setPosition(pos.x , pos.y);
 }
 
- int step = 10;		//slow it down a little
 
-void Ball::collusion(sf::FloatRect inhitbox)
+void Ball::collusion(sf::Sprite& inobject)
 {
+	
+		if( Collision::BoundingBoxTest( this -> sprite, inobject) == true ){
 
-
-	if(step == 10){
-	if(sprite.getGlobalBounds().intersects(inhitbox) == true){
-		//BETA v0.1
-		movevector.x *= -1;
-		movevector.y *= -1;
-	}
- 	if(step > 0)
- 	  step--;
- 	else 
- 	 step = 10;
-	}
+			movevector.x *= -1;
+			movevector.y *= -1;
+		}
 }
 
 Ball::Ball(mm::vec2 inposition, std::string tex_filename) :pos(inposition)
 {
 	//BEta v0.1 - TEST
-	movevector.x = -2;
-	movevector.y = -2;
+	movevector.x = 5;
+	movevector.y = 2;
 	
 	
 	tex.loadFromFile(tex_filename);

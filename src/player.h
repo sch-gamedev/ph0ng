@@ -35,10 +35,8 @@ public:
 	
 	Player(const string &imageName);	//CTOR
 
-	const sf::Sprite& GetSprite() const
-	{
-		return sprite;
-	}
+	sf::Sprite& GetSprite();
+	
 	void move(float angle);
 
 

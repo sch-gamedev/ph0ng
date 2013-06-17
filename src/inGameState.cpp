@@ -20,13 +20,16 @@ void InGameState::Update( )
   			if(i == ballindex && i + 1 < Balls.size() )		//do not call on itself
  				++i;
 
-			Balls[ballindex]->collusion(Balls[i]->GetSprite().getGlobalBounds());
+			if(i == ballindex && i + 1 >= Balls.size() )
+				break;
+
+			Balls[ballindex]->collusion( Balls[i]->GetSprite() );
 		}//2nd for - end
 	
 	}//1st for - end
 
 	for(int ballindex = 0; ballindex < Balls.size(); ++ballindex)
-		Balls[ballindex]->collusion(player.GetSprite().getGlobalBounds());	//collusion with the player
+		Balls[ballindex]->collusion( player.GetSprite() );	//collusion with the player
 
 }//fnc -end
 

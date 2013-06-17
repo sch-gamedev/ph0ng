@@ -7,6 +7,11 @@
 
 int Player::nextID = 0;
 
+sf::Sprite& Player::GetSprite()
+{
+	return sprite;
+}
+
 void Player::Draw(sf::RenderWindow &Window) 
 {
 	Window.draw(sprite);

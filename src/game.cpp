@@ -21,8 +21,6 @@ void Game::Run()
 	////////
 	while( running )
 	{
-
-
 		// get passed time
 		sum_time += clock.restart().asMicroseconds();
 		
@@ -37,24 +35,20 @@ void Game::Run()
 			{
 				switch( event.type )
 				{
-					// ablak bezárása
+					
 				case sf::Event::Closed :
 					{
 						running = false;
 						break;
 					}
 
-					// ablak átméretezõdött
+					
 				case sf::Event::Resized :
 					{
 						//Game::SetProjection(event.size.width, event.size.height);
 						break;
 					}
 
-				case sf::Event::KeyPressed:
-					{
-						
-					}
 				}
 			}
 
@@ -97,8 +91,9 @@ Game::Game( const int &Xres /*= 1280*/, const int &Yres /*= 720*/ )
 	yres = Yres;
 
 #ifdef _DEBUG
+
 	sf::String windowTitle = "ph0ng --- DEBUG";
-	freopen("CON", "w", stdout);
+	
 #else
 	sf::String windowTitle = "ph0ng";
 #endif
@@ -109,17 +104,3 @@ Game::Game( const int &Xres /*= 1280*/, const int &Yres /*= 720*/ )
 	currentState = INGAME;
 	running = true;
 }
-
-
-
-/*void Game::SetProjection(GLsizei Width_in, GLsizei Height_in)
-{
-	// vetítés beállítása
-	glMatrixMode(GL_PROJECTION);
-	glLoadIdentity();
-	glOrtho(0, 1024, 0, 768, 1, -1);
-	glMatrixMode(GL_MODELVIEW);
-
-	// viewport beállítása a teljes ablakra
-	glViewport(0, 0, Width_in, Height_in);
-}*/
