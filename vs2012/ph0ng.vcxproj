@@ -83,7 +83,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\src\ball.cpp" />
-    <ClCompile Include="..\src\Collusion.cpp" />
+    <ClCompile Include="..\src\Collision.cpp" />
     <ClCompile Include="..\src\game.cpp" />
     <ClCompile Include="..\src\inGameState.cpp" />
     <ClCompile Include="..\src\main.cpp" />

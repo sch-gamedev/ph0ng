@@ -22,7 +22,7 @@
     <ClCompile Include="..\src\main.cpp">
       <Filter>Resource Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\Collusion.cpp" />
+    <ClCompile Include="..\src\Collision.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\ball.h">
