@@ -25,22 +25,38 @@ void Ball::update()
 sprite.setPosition(pos.x , pos.y);
 }
 
-
-void Ball::collusion(sf::Sprite& inobject)
+void Ball::collision(Ball& inobject)
 {
-	
-		if( Collision::BoundingBoxTest( this -> sprite, inobject) == true ){
+  if( Collision::BoundingBoxTest( this -> sprite, inobject.sprite) == true )
+  {
+    float l = mm::length(movevector);
+    movevector = l * mm::reflect( movevector / l, mm::normalize(inobject.movevector) );
+  }
+}
 
+void Ball::collision(sf::Sprite& inobject)
+{
+		if( Collision::BoundingBoxTest( this -> sprite, inobject) == true )
+    {
 			movevector.x *= -1;
 			movevector.y *= -1;
 		}
 }
 
-Ball::Ball(mm::vec2 inposition, std::string tex_filename) :pos(inposition)
+void Ball::collision(sf::Sprite& inobject, mm::vec2 n)
+{
+  if( Collision::BoundingBoxTest( this -> sprite, inobject) == true )
+  {
+    float l = mm::length(movevector);
+    movevector = l * mm::reflect( movevector / l, n );
+  }
+}
+
+Ball::Ball(mm::vec2 inposition, mm::vec2 move, std::string tex_filename) : pos(inposition), movevector(move)
 {
 	//BEta v0.1 - TEST
-	movevector.x = 5;
-	movevector.y = 2;
+	//movevector.x = 5;
+	//movevector.y = 2;
 	
 	
 	tex.loadFromFile(tex_filename);

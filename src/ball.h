@@ -22,10 +22,12 @@ private:
 
 public:
 
-	Ball(mm::vec2, std::string);
+	Ball(mm::vec2, mm::vec2 move, std::string);
 
 	void update(); 
-	void collusion(sf::Sprite&);
+	void collision(sf::Sprite&);
+  void collision(sf::Sprite&, mm::vec2 n);
+  void collision(Ball&);
 
 	void Draw(sf::RenderWindow&);
 
